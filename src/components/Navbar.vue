@@ -4,7 +4,6 @@
         <div class="logo">Mi Sitio</div>
         <ul class="nav-links">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Servicios</a></li>
           <li><a href="#">Contacto</a></li>
         </ul>
         <div class="login-button">
