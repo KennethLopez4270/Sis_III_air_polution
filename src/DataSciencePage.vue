@@ -3,16 +3,27 @@
   <div class="content-wrapper">
     <h1 class="title">¿Qué es la Ciencia de Datos?</h1>
     <p class="description">
-      La ciencia de datos es una disciplina que utiliza métodos científicos, algoritmos, procesos y sistemas para extraer conocimiento e ideas a partir de datos estructurados y no estructurados. Combina herramientas de matemáticas, estadísticas y programación para resolver problemas y generar conocimiento a partir de los datos.
+      La ciencia de datos es un campo interdisciplinario que se encarga de extraer conocimiento y obtener información a partir de grandes conjuntos de datos. Se apoya en diversas disciplinas, como la estadística, la programación, el análisis de datos y el aprendizaje automático, para identificar patrones, realizar predicciones y tomar decisiones basadas en datos. En un mundo impulsado por la información, la ciencia de datos desempeña un papel fundamental en la solución de problemas complejos y en la creación de soluciones innovadoras que mejoran la vida de las personas y optimizan procesos.
+    </p>
+    <p class="description">
+      En términos prácticos, la ciencia de datos abarca todo el proceso de trabajar con datos, desde la recolección y limpieza de los datos hasta el análisis y visualización. Los científicos de datos utilizan una combinación de técnicas y herramientas para comprender y resolver problemas. Entre estas herramientas destacan los lenguajes de programación como Python y R, bibliotecas especializadas, plataformas de computación en la nube, y técnicas de modelado estadístico.
+    </p>
+    <p class="description">
+      Algunos ejemplos de aplicaciones de la ciencia de datos incluyen la predicción del comportamiento del cliente en el marketing, el análisis de grandes volúmenes de datos médicos para diagnosticar enfermedades, el desarrollo de sistemas de recomendación como los que utilizan plataformas de streaming, y la optimización de procesos empresariales mediante modelos predictivos. Todo esto hace de la ciencia de datos una disciplina clave en la era de la información.
     </p>
 
-
-
-    
-
+    <!-- Sección para subir el archivo -->
     <div class="upload-section">
       <h2>Sube tu archivo .xml</h2>
-      <input type="file" class="file-input" @change="handleFileUpload" accept=".xml" />
+      <label for="file-upload" class="upload-btn">Selecciona un archivo</label>
+      <input 
+        type="file" 
+        id="file-upload" 
+        class="file-input" 
+        @change="handleFileUpload" 
+        accept=".xml" 
+        hidden
+      />
       <p class="upload-instructions">Selecciona un archivo con extensión .xml y súbelo para continuar.</p>
     </div>
   </div>
@@ -31,18 +42,8 @@ methods: {
   handleFileUpload(event) {
     this.file = event.target.files[0];
     if (this.file && this.file.name.endsWith(".xml")) {
-
-
-
-
-
-
       alert(`Archivo ${this.file.name} subido exitosamente.`);
-
-
-
-
-      this.$router.push('/weka-connection');
+      this.$router.push('/weka-connection'); 
     } else {
       alert("Por favor, sube un archivo con extensión .xml.");
     }
@@ -53,57 +54,63 @@ methods: {
 
 <style scoped>
 .data-science-page {
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-background: linear-gradient(135deg, #0075e1, #d9e7ff);
-padding: 20px;
+padding: 2rem;
+color: #fff;
+background-color: #0075e1;
+text-align: left;
 }
 
 .content-wrapper {
-max-width: 600px;
-padding: 20px;
-border-radius: 8px;
-background-color: #ffffff;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-text-align: center;
+max-width: 800px;
+margin: 0 auto;
+background: rgba(0, 117, 225, 0.8);
+padding: 1.5rem;
+border-radius: 10px;
 }
 
 .title {
 font-size: 2rem;
-color: #333;
-margin-bottom: 16px;
+margin-bottom: 1rem;
 }
 
 .description {
-font-size: 1rem;
-color: #555;
-line-height: 1.5;
-margin-bottom: 24px;
+margin-bottom: 1rem;
+font-size: 1.1rem;
+line-height: 1.6;
 }
 
 .upload-section {
-margin-top: 20px;
+margin-top: 2rem;
+}
+
+.upload-btn {
+display: inline-block;
+background-color: #000; 
+color: #fff; 
+padding: 10px 20px;
+border-radius: 5px;
+font-size: 1.1rem;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.upload-btn:hover {
+background-color: #333; 
+transform: translateY(-2px);
+}
+
+.upload-btn:active {
+transform: translateY(0);
 }
 
 .file-input {
-display: block;
-margin: 0 auto;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 4px;
-cursor: pointer;
-font-size: 1rem;
-}
-
-.file-input:hover {
-border-color: #888;
+display: none; 
 }
 
 .upload-instructions {
+margin-top: 0.5rem;
 font-size: 0.9rem;
-color: #666;
-margin-top: 8px;
+color: #d9e7ff;
 }
 </style>
+
