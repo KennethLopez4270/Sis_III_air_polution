@@ -16,42 +16,13 @@
 
       <div class="footer-contacts">
         <h4>Contactos del Equipo</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Teléfono</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Daira Arce Quisbert</td>
-              <td>daira.arce@ucb.edu.bo</td>
-              <td>00000000</td>
-            </tr>
-            <tr>
-              <td>Kenneth Lopez Castillo</td>
-              <td>kenneth.lopez@ucb.edu.bo</td>
-              <td>00000000</td>
-            </tr>
-            <tr>
-              <td>Zapana Pariguana Brian</td>
-              <td>zapana.pariguana@ucb.edu.bo</td>
-              <td>00000000</td>
-            </tr>
-            <tr>
-              <td>Condarco Poma Fabrisio</td>
-              <td>condarco.poma@ucb.edu.bo</td>
-              <td>00000000</td>
-            </tr>
-            <tr>
-              <td>Flores Moya Valdir</td>
-              <td>flores.moya@ucb.edu.bo</td>
-              <td>00000000</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="contacts-list">
+          <div class="contact-item" v-for="contact in contacts" :key="contact.name">
+            <h5>{{ contact.name }}</h5>
+            <p><strong>Correo:</strong> <a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
+            <p><strong>Teléfono:</strong> {{ contact.phone }}</p>
+          </div>
+        </div>
       </div>
 
       <div class="footer-socials">
@@ -72,6 +43,37 @@
 <script>
 export default {
   name: "Footer",
+  data() {
+    return {
+      contacts: [
+        {
+          name: "Daira Arce Quisbert",
+          email: "dairaarcequisbert@ucb.edu.bo",
+          phone: "+591 69765793",
+        },
+        {
+          name: "Kenneth Lopez Castillo",
+          email: "kennethlopezcastillo@ucb.edu.bo",
+          phone: "+591 67309992",
+        },
+        {
+          name: "Zapana Pariguana Brian",
+          email: "zapanapariguanabrian@ucb.edu.bo",
+          phone: "+591 75232880",
+        },
+        {
+          name: "Condarco Poma Fabrisio",
+          email: "condarcopomafabrisio@ucb.edu.bo",
+          phone: "+591 70692270",
+        },
+        {
+          name: "Flores Moya Valdir",
+          email: "floresmoyavaldir@ucb.edu.bo",
+          phone: "+591 71228229",
+        },
+      ],
+    };
+  },
 };
 </script>
 
@@ -125,32 +127,46 @@ export default {
 
 .footer-contacts {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   width: 100%;
 }
 
 .footer-contacts h4 {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.footer-contacts table {
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
 }
 
-.footer-contacts th,
-.footer-contacts td {
-  padding: 10px;
-  border: 1px solid #ecf0f1;
-}
-
-.footer-contacts th {
-  background-color: #34495e; /* Azul más oscuro */
-}
-
-.footer-contacts td {
+.contact-item {
+  background-color: #34495e; /* Azul oscuro */
+  padding: 15px;
+  border-radius: 8px;
   text-align: left;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #ecf0f1;
+}
+
+.contact-item h5 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.contact-item a {
+  color: #3498db; /* Azul claro */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #2980b9; /* Azul más oscuro */
 }
 
 .footer-socials a {
@@ -164,12 +180,23 @@ export default {
   color: #3498db; /* Azul claro */
 }
 
+/* Diseño adaptable */
 @media (min-width: 768px) {
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .contacts-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-item {
+    margin: 0 10px;
   }
 }
 </style>
