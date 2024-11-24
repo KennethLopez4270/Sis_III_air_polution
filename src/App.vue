@@ -1,30 +1,54 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <router-view />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
+<style>
+/* Reinicio global para evitar desbordamientos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que padding y bordes se incluyan en el ancho/alto */
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  background-color: #242424; /* Fondo oscuro */
+  font-family: Arial, sans-serif; /* Estilo de fuente general */
+  overflow-x: hidden; /* Previene desbordamiento horizontal */
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column; /* Asegura una disposición vertical */
 }
+
+/* Clase para el contenido principal */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 100%;
+}
+
+/* Botones, tarjetas u otros elementos */
+button, img, .card {
+  display: block;
+  margin: 0 auto; /* Centrado automático */
+  max-width: 100%; /* Asegura que no se desborde */
+}
+
 </style>
