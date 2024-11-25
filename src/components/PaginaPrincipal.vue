@@ -21,7 +21,7 @@
  <h2 class="section-title">Información clave sobre la contaminación del aire</h2>
 <div class="info-block">
  <div class="info-text">
-   <h3 class="info-title">Causas principales</h3>
+   <h3 class="info-title"><center>Causas principales</center></h3>
    <p>
      La contaminación del aire es principalmente causada por actividades humanas, como la quema de combustibles fósiles, el tráfico vehicular y la agricultura intensiva. Estas actividades liberan gases y partículas tóxicas que afectan el aire que respiramos.
    </p>
@@ -37,7 +37,7 @@
  <div class="image-container"> <img src="../assets/tos.jpg" alt="Impactos en la salud" /></div>
 
  <div class="info-text">
-   <h3 class="info-title">Impactos en la salud</h3>
+   <h3 class="info-title"><center>Impactos en la salud</center></h3>
    <p>
      La exposición prolongada al aire contaminado puede causar enfermedades respiratorias, cardiovasculares e incluso neurológicas. Niños, ancianos y personas con condiciones preexistentes son los más vulnerables.
    </p>
@@ -48,7 +48,7 @@
 
 <div class="info-block">
  <div class="info-text">
-   <h3 class="info-title">Efectos ambientales</h3>
+   <h3 class="info-title"><center>Efectos ambientales</center></h3>
    <p>
      La contaminación del aire contribuye al cambio climático, la lluvia ácida y la destrucción de la capa de ozono, afectando ecosistemas, biodiversidad y la salud del planeta en general.
    </p>
@@ -64,7 +64,7 @@
  <div class="image-container"> <img src="../assets/ni.jpg" alt="Soluciones" /></div>
  
  <div class="info-text">
-   <h3 class="info-title">Soluciones posibles</h3>
+   <h3 class="info-title"><center>Soluciones posibles</center></h3>
    <p>
      Reducir la contaminación del aire requiere acciones como usar transporte sostenible, energías renovables y políticas estrictas de control de emisiones. La educación es clave para crear conciencia y motivar el cambio.
    </p>
@@ -112,7 +112,7 @@
    </div>
    <div class="media">
  <a href="https://www.esginnova.com/sostenibilidad/soluciones-innovadoras-para-reducir-la-contaminacion/" target="_blank">
-   <img src=".. /assets/tex.jpg" alt="Vista previa de soluciones innovadoras para un aire más limpio" />
+   <img src="@/assets/tex.jpg" alt="Vista previa de soluciones innovadoras para un aire más limpio" />
  </a>
  <p>Soluciones innovadoras para un aire más limpio.</p>
 </div>
@@ -192,6 +192,7 @@ body {
 .contenido-encabezado {
  display: flex;
  justify-content: space-between;
+ background-color: #ffffff;
  align-items: center;
  position: relative;
  z-index: 5;
@@ -201,6 +202,7 @@ body {
  font-size: 4rem;
  font-family: 'Kodchasan', sans-serif;
  color: #680148;
+ padding-left: 50px;
  animation: slide-in 1.5s ease-out;
 }
 

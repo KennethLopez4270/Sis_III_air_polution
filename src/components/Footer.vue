@@ -1,202 +1,299 @@
 <template>
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-info">
-        <h3>Mi Sitio</h3>
-        <p>&copy; 2024 Todos los derechos reservados.</p>
-      </div>
-
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">Sobre Nosotros</a></li>
-          <li><a href="#">Política de Privacidad</a></li>
-          <li><a href="#">Términos y Condiciones</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-contacts">
-        <h4>Contactos del Equipo</h4>
-        <div class="contacts-list">
-          <div class="contact-item" v-for="contact in contacts" :key="contact.name">
-            <h5>{{ contact.name }}</h5>
-            <p><strong>Correo:</strong> <a :href="'mailto:' + contact.email">{{ contact.email }}</a></p>
-            <p><strong>Teléfono:</strong> {{ contact.phone }}</p>
+  <footer class="footer-container">
+    <!-- Sección: Información del Equipo -->
+    <div class="team-section">
+      <h3>Conoce a nuestro equipo</h3>
+      <div class="team-grid">
+        <div v-for="integrante in integrantes" :key="integrante.id" class="team-card">
+          <img :src="integrante.foto" :alt="`Foto de ${integrante.nombre}`" />
+          <div class="team-info">
+            <h4>{{ integrante.nombre }}</h4>
+            <p>Teléfono: {{ integrante.telefono }}</p>
+            <p>Email: <a :href="'mailto:' + integrante.email">{{ integrante.email }}</a></p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="footer-socials">
-        <a href="#" aria-label="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="#" aria-label="Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
+    <!-- Sección: Mapa y Botón en dos columnas -->
+    <div class="additional-section">
+      <div class="map-column">
+        <h3><centar>Ubicación</centar></h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345086166!2d144.9630577156923!3d-37.814107979751504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5778b2c7c0edfb8!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1619919891628!5m2!1sen!2sau"
+          width="100%"
+          height="250"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
       </div>
+      <div class="button-column">
+        <h3>Informe del Proyecto</h3>
+        <button @click="openModal" class="btn btn-white btn-animate">
+          Ver Informe del Proyecto
+        </button>
+
+                  <!-- Modal para mostrar PDF -->
+          <div v-if="isModalOpen" class="modal">
+            <div class="modal-content">
+              <button class="close-button" @click="closeModal">X</button>
+              <iframe
+                src="/src/assets/informe.pdf"
+                width="100%"
+                height="100%"
+                frameborder="0"
+              ></iframe>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Línea Divisoria y Derechos Reservados -->
+    <div class="footer-divider"></div>
+    <div class="footer-rights">
+      <p>&copy; 2024 Todos los derechos reservados.</p>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "Footer",
   data() {
     return {
-      contacts: [
+      integrantes: [
         {
-          name: "Daira Arce Quisbert",
-          email: "dairaarcequisbert@ucb.edu.bo",
-          phone: "+591 69765793",
+          id: 1,
+          nombre: "Juan Pérez",
+          telefono: "123-456-7890",
+          email: "juan.perez@example.com",
+          foto: "https://images.vexels.com/content/136554/preview/people-contact-icon-7c2a5f.png",
         },
         {
-          name: "Kenneth Lopez Castillo",
-          email: "kennethlopezcastillo@ucb.edu.bo",
-          phone: "+591 67309992",
+          id: 2,
+          nombre: "Ana López",
+          telefono: "234-567-8901",
+          email: "ana.lopez@example.com",
+          foto: "https://images.vexels.com/content/136554/preview/people-contact-icon-7c2a5f.png",
         },
         {
-          name: "Zapana Pariguana Brian",
-          email: "zapanapariguanabrian@ucb.edu.bo",
-          phone: "+591 75232880",
+          id: 3,
+          nombre: "Carlos García",
+          telefono: "345-678-9012",
+          email: "carlos.garcia@example.com",
+          foto: "https://images.vexels.com/content/136554/preview/people-contact-icon-7c2a5f.png",
         },
         {
-          name: "Condarco Poma Fabrisio",
-          email: "condarcopomafabrisio@ucb.edu.bo",
-          phone: "+591 70692270",
+          id: 4,
+          nombre: "María Díaz",
+          telefono: "456-789-0123",
+          email: "maria.diaz@example.com",
+          foto: "https://images.vexels.com/content/136554/preview/people-contact-icon-7c2a5f.png",
         },
         {
-          name: "Flores Moya Valdir",
-          email: "floresmoyavaldir@ucb.edu.bo",
-          phone: "+591 71228229",
+          id: 5,
+          nombre: "Luis Ramírez",
+          telefono: "567-890-1234",
+          email: "luis.ramirez@example.com",
+          foto: "https://images.vexels.com/content/136554/preview/people-contact-icon-7c2a5f.png",
         },
       ],
+      isModalOpen: false, // Propiedad para controlar el modal
     };
+  },
+  methods: {
+    openModal() {
+      this.isModalOpen = true; // Abrir el modal
+    },
+    closeModal() {
+      this.isModalOpen = false; // Cerrar el modal
+    },
   },
 };
 </script>
 
-<style scoped>
-.footer {
-  background-color: #2c3e50; /* Azul oscuro */
-  color: #ecf0f1; /* Gris claro */
-  padding: 20px 0;
-  text-align: center;
-}
 
+<style scoped>
 .footer-container {
+  padding-top: 50px;
+  margin-top: 50[x];
+  background: linear-gradient(to bottom, #cc2c97, #630443);
+  color: #ecf0f1;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  gap: 30px;
 }
 
-.footer-info h3 {
-  margin: 0;
+.team-section h3,
+.additional-section h3 {
+  margin-bottom: 10px;
   font-size: 1.5rem;
 }
 
-.footer-info p {
-  margin: 5px 0 0;
-  font-size: 0.9rem;
-  color: #bdc3c7; /* Gris más claro */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
 }
 
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 15px;
-}
-
-.footer-links li {
-  font-size: 0.9rem;
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: #ecf0f1;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #3498db; /* Azul claro */
-}
-
-.footer-contacts {
+.team-card {
+  background: #f176ca;
+  border-radius: 10px;
+  padding: 10px;
   text-align: center;
-  font-size: 1rem;
+}
+
+.team-card img {
   width: 100%;
+  max-width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
-.footer-contacts h4 {
-  margin-bottom: 15px;
+.team-info h4 {
+  margin: 5px 0;
+  font-size: 1.2rem;
 }
 
-.contacts-list {
+.team-info p {
+  margin: 3px 0;
+  font-size: 0.9rem;
+}
+
+.team-info a {
+  color: #4e0537;
+  text-decoration: none;
+}
+
+.team-info a:hover {
+  text-decoration: underline;
+}
+
+/* Nueva sección de mapa y botón */
+.additional-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.map-column iframe {
+  border-radius: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.button-column {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   align-items: center;
-  width: 100%;
 }
 
-.contact-item {
-  background-color: #34495e; /* Azul oscuro */
-  padding: 15px;
-  border-radius: 8px;
-  text-align: left;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #ecf0f1;
-}
-
-.contact-item h5 {
-  margin: 0 0 10px;
-  font-size: 1.1rem;
-}
-
-.contact-item a {
-  color: #3498db; /* Azul claro */
+/* Botón */
+.btn {
+  background-color: #89dfe0;
+  color: #0d5052;
+  align-items: center;
+  font-family: 'Kodchasan', sans-serif;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-.contact-item a:hover {
-  color: #2980b9; /* Azul más oscuro */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.footer-socials a {
-  color: #ecf0f1;
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #2d8a8b;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+/* Línea divisoria */
+.footer-divider {
+  height: 1px;
+  background-color: #7f8c8d;
+  margin: 20px 0;
+}
+
+/* Derechos reservados */
+.footer-rights {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   font-size: 1.2rem;
-  margin: 0 10px;
-  transition: color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }
 
-.footer-socials a:hover {
-  color: #3498db; /* Azul claro */
+.close-button:hover {
+  background: darkred;
 }
 
-/* Diseño adaptable */
-@media (min-width: 768px) {
-  .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .contacts-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .contact-item {
-    margin: 0 10px;
-  }
-}
 </style>
