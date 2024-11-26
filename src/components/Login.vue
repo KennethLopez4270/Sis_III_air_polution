@@ -37,7 +37,7 @@
       <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       <div class="link-container">
         <p>¿No tienes cuenta? <a href="/auth/registro">Regístrate aquí</a></p>
-        <p><a href="/">Volver al inicio</a></p>
+        <p><router-link to="/">Volver al inicio</router-link></p>
       </div>
     </div>
   </div>
@@ -69,10 +69,12 @@ export default {
 
         // Almacenar el token en el localStorage
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("userRole", response.data.usuario.Rol);
+        localStorage.setItem("userName", response.data.usuario.Nombre);
 
         // Redirigir al usuario o mostrar un mensaje de éxito
         alert("Inicio de sesión exitoso");
-        this.$router.push("/weka/ciencia-datos"); // Ajusta la ruta según tu proyecto
+        this.$router.push("/ciencia-datos"); // Ajusta la ruta según tu proyecto
       } catch (error) {
         // Manejar errores y mostrar mensajes al usuario
         if (error.response && error.response.data) {

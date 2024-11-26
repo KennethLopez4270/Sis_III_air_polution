@@ -5,7 +5,6 @@ import LayoutNoPredeterminado from './layouts/LayoutNoPredeterminado.vue';
 import PaginaPrincipal from './components/PaginaPrincipal.vue';
 import CienciadeDatos from './components/CienciadeDatos.vue';
 import Registro from './components/Registro.vue';
-import LayoutDespDeInicio from './layouts/LayoutDespDeInicio.vue';
 
 const routes = [
     {
@@ -15,6 +14,10 @@ const routes = [
         {
           path: '',
           component: PaginaPrincipal,
+        },
+        {
+          path: 'ciencia-datos',
+          component: CienciadeDatos,
         },
       ],
     },
@@ -31,16 +34,6 @@ const routes = [
             component: Registro,
           },
           
-        ],
-      },
-      {
-        path: '/weka',
-        component: LayoutDespDeInicio,
-        children: [
-          {
-            path: 'ciencia-datos',
-            component: CienciadeDatos,
-          },
         ],
       },
 ]

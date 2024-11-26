@@ -155,7 +155,7 @@ export default {
  },
  methods: { // Aquí ahora está dentro del componente correctamente
    irARegistro() {
-     this.$router.push("/registro");
+     this.$router.push("/auth/registro");
    },
  },
 };
